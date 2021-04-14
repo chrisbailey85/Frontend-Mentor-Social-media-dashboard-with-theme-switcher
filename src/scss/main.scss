@@ -7,10 +7,16 @@
 }
 
 body {
+  overflow-x: hidden;
+}
+
+.container {
   background-color: colors.$white-bg;
   line-height: 1.5;
   font-family: "Inter", sans-serif;
   transition: all 0.5s ease;
+  height: 100% !important;
+  width: 100% !important;
 }
 .header {
   padding: 1rem 1rem 3rem;
@@ -18,7 +24,7 @@ body {
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
   transition: all 0.5s ease;
-  min-width: 100vw;
+  max-width: 100vw;
   &__title {
     color: colors.$light-card-text-dark;
     font-size: 1.2rem;
@@ -26,6 +32,7 @@ body {
   &__followers {
     color: colors.$light-card-text;
     font-size: 0.8rem;
+    padding-bottom: 1rem;
   }
 }
 
@@ -65,11 +72,11 @@ body {
 
 .main {
   padding: 1rem 1rem;
+  transform: translateY(-3.5rem);
 }
 
 .stats {
   width: 100%;
-  transform: translateY(-3.5rem);
 }
 
 .card {
@@ -149,7 +156,6 @@ body {
 }
 
 .overview {
-  transform: translateY(-3rem);
   &__heading {
     color: colors.$light-card-text;
     margin-bottom: 1rem;
@@ -185,20 +191,23 @@ body {
   display: none;
 }
 #mode-toggle:checked {
-  & + .header {
+  & + .container {
+    background-color: colors.$very-dark-blue-bg;
+  }
+  & ~ .container .header {
     background-color: colors.$very-dark-blue-gb-top;
   }
-  & ~ .header .header__title {
+  & ~ .container .header .header__title {
     color: colors.$white;
   }
-  & ~ .header .header__followers,
-  .header .mode .mode__type {
+  & ~ .container .header .header__followers,
+  .container .header .mode .mode__type {
     color: colors.$dark-card-text;
   }
-  & ~ .header .mode .mode__type {
+  & ~ .container .header .mode .mode__type {
     color: colors.$dark-card-text;
   }
-  & ~ .header .mode .toggle {
+  & ~ .container .header .mode .toggle {
     background: colors.$toggle-dark;
     &::before {
       right: initial;
@@ -207,7 +216,7 @@ body {
     }
   }
   /* cards */
-  & ~ .main .stats .cards .card {
+  & ~ .container .main .stats .cards .card {
     background-color: colors.$dark-card-bg;
     &__username {
       color: colors.$dark-card-text;
@@ -221,7 +230,7 @@ body {
       font-weight: 400;
     }
   }
-  & ~ .main .overview .overview-cards .card {
+  & ~ .container .main .overview .overview-cards .card {
     background-color: colors.$dark-card-bg;
     .card--overview--number {
       color: colors.$white;
@@ -230,7 +239,7 @@ body {
       color: colors.$dark-card-text;
     }
   }
-  & ~ .main .attribution {
+  & ~ .container .main .attribution {
     color: colors.$dark-card-text;
     a {
       color: colors.$white;
@@ -263,9 +272,6 @@ body {
   }
 }
 @media (min-width: 1024px) {
-  body {
-    overflow: hidden;
-  }
   .header {
     padding: 2rem 4rem 100px;
     display: flex;
@@ -284,9 +290,6 @@ body {
   .card {
     width: 24%;
   }
-  .overview {
-    transform: translateY(-4rem);
-  }
   .cards,
   .overview-cards {
     display: flex;
@@ -299,7 +302,7 @@ body {
   }
   .attribution {
     position: absolute;
-    bottom: 30px;
+    bottom: -30px;
     width: 100%;
     text-align: center;
   }
@@ -308,9 +311,7 @@ body {
   .header {
     padding: 1rem 4rem 10rem;
   }
-
-  .stats {
-    width: 100%;
+  .main {
     transform: translateY(-7rem);
   }
   .card {
@@ -319,14 +320,5 @@ body {
   .card-overview {
     width: 24%;
     margin-right: 0.5rem;
-  }
-  .overview {
-    transform: translateY(-7rem);
-  }
-  .attribution {
-    position: absolute;
-    bottom: 60px;
-    width: 100%;
-    text-align: center;
   }
 }

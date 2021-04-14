@@ -5,10 +5,16 @@
 }
 
 body {
+  overflow-x: hidden;
+}
+
+.container {
   background-color: white;
   line-height: 1.5;
   font-family: "Inter", sans-serif;
   transition: all 0.5s ease;
+  height: 100% !important;
+  width: 100% !important;
 }
 
 .header {
@@ -17,7 +23,7 @@ body {
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
   transition: all 0.5s ease;
-  min-width: 100vw;
+  max-width: 100vw;
 }
 .header__title {
   color: #1e202a;
@@ -26,6 +32,7 @@ body {
 .header__followers {
   color: #63687e;
   font-size: 0.8rem;
+  padding-bottom: 1rem;
 }
 
 .mode {
@@ -64,11 +71,11 @@ body {
 /* main content */
 .main {
   padding: 1rem 1rem;
+  transform: translateY(-3.5rem);
 }
 
 .stats {
   width: 100%;
-  transform: translateY(-3.5rem);
 }
 
 .card {
@@ -143,9 +150,6 @@ body {
   color: #1db489;
 }
 
-.overview {
-  transform: translateY(-3rem);
-}
 .overview__heading {
   color: #63687e;
   margin-bottom: 1rem;
@@ -186,53 +190,56 @@ body {
 #mode-toggle:checked {
   /* cards */
 }
-#mode-toggle:checked + .header {
+#mode-toggle:checked + .container {
+  background-color: #1e202a;
+}
+#mode-toggle:checked ~ .container .header {
   background-color: #1f212e;
 }
-#mode-toggle:checked ~ .header .header__title {
+#mode-toggle:checked ~ .container .header .header__title {
   color: white;
 }
-#mode-toggle:checked ~ .header .header__followers,
-#mode-toggle:checked .header .mode .mode__type {
+#mode-toggle:checked ~ .container .header .header__followers,
+#mode-toggle:checked .container .header .mode .mode__type {
   color: #8b97c6;
 }
-#mode-toggle:checked ~ .header .mode .mode__type {
+#mode-toggle:checked ~ .container .header .mode .mode__type {
   color: #8b97c6;
 }
-#mode-toggle:checked ~ .header .mode .toggle {
+#mode-toggle:checked ~ .container .header .mode .toggle {
   background: linear-gradient(to right, #378fe6, #3eda82);
 }
-#mode-toggle:checked ~ .header .mode .toggle::before {
+#mode-toggle:checked ~ .container .header .mode .toggle::before {
   right: initial;
   left: 4px;
   background-color: #1e202a;
 }
-#mode-toggle:checked ~ .main .stats .cards .card {
+#mode-toggle:checked ~ .container .main .stats .cards .card {
   background-color: #252a41;
 }
-#mode-toggle:checked ~ .main .stats .cards .card__username {
+#mode-toggle:checked ~ .container .main .stats .cards .card__username {
   color: #8b97c6;
 }
-#mode-toggle:checked ~ .main .stats .cards .card__number {
+#mode-toggle:checked ~ .container .main .stats .cards .card__number {
   color: white;
 }
-#mode-toggle:checked ~ .main .stats .cards .card__type {
+#mode-toggle:checked ~ .container .main .stats .cards .card__type {
   color: #8b97c6;
   font-weight: 400;
 }
-#mode-toggle:checked ~ .main .overview .overview-cards .card {
+#mode-toggle:checked ~ .container .main .overview .overview-cards .card {
   background-color: #252a41;
 }
-#mode-toggle:checked ~ .main .overview .overview-cards .card .card--overview--number {
+#mode-toggle:checked ~ .container .main .overview .overview-cards .card .card--overview--number {
   color: white;
 }
-#mode-toggle:checked ~ .main .overview .overview-cards .card .card-overview__title {
+#mode-toggle:checked ~ .container .main .overview .overview-cards .card .card-overview__title {
   color: #8b97c6;
 }
-#mode-toggle:checked ~ .main .attribution {
+#mode-toggle:checked ~ .container .main .attribution {
   color: #8b97c6;
 }
-#mode-toggle:checked ~ .main .attribution a {
+#mode-toggle:checked ~ .container .main .attribution a {
   color: white;
 }
 
@@ -264,10 +271,6 @@ body {
   }
 }
 @media (min-width: 1024px) {
-  body {
-    overflow: hidden;
-  }
-
   .header {
     padding: 2rem 4rem 100px;
     display: flex;
@@ -290,10 +293,6 @@ body {
     width: 24%;
   }
 
-  .overview {
-    transform: translateY(-4rem);
-  }
-
   .cards,
 .overview-cards {
     display: flex;
@@ -308,7 +307,7 @@ body {
 
   .attribution {
     position: absolute;
-    bottom: 30px;
+    bottom: -30px;
     width: 100%;
     text-align: center;
   }
@@ -318,8 +317,7 @@ body {
     padding: 1rem 4rem 10rem;
   }
 
-  .stats {
-    width: 100%;
+  .main {
     transform: translateY(-7rem);
   }
 
@@ -330,17 +328,6 @@ body {
   .card-overview {
     width: 24%;
     margin-right: 0.5rem;
-  }
-
-  .overview {
-    transform: translateY(-7rem);
-  }
-
-  .attribution {
-    position: absolute;
-    bottom: 60px;
-    width: 100%;
-    text-align: center;
   }
 }
 
