@@ -146,9 +146,11 @@ body {
 }
 .card__increase {
   color: #1db489;
+  font-weight: 700;
 }
 .card__decrease {
-  color: #1db489;
+  color: #dc414c;
+  font-weight: 700;
 }
 
 .overview__heading {

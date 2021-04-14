@@ -150,9 +150,11 @@ body {
   }
   &__increase {
     color: colors.$green;
+    font-weight: 700;
   }
   &__decrease {
-    color: colors.$green;
+    color: colors.$red;
+    font-weight: 700;
   }
 }
 
