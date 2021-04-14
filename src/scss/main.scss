@@ -1,0 +1,332 @@
+@use "./colors";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: colors.$white-bg;
+  line-height: 1.5;
+  font-family: "Inter", sans-serif;
+  transition: all 0.5s ease;
+}
+.header {
+  padding: 1rem 1rem 3rem;
+  background-color: colors.$light-bg-top;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  transition: all 0.5s ease;
+  min-width: 100vw;
+  &__title {
+    color: colors.$light-card-text-dark;
+    font-size: 1.2rem;
+  }
+  &__followers {
+    color: colors.$light-card-text;
+    font-size: 0.8rem;
+  }
+}
+
+.mode {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  border-top: 1px solid colors.$light-card-text;
+  &__type {
+    color: colors.$light-card-text;
+    font-size: 1rem;
+  }
+}
+
+/* toggle dark mode btn */
+.toggle {
+  position: relative;
+  height: 1.5rem;
+  width: 3rem;
+  background: colors.$toggle;
+  border-radius: 50px;
+  cursor: pointer;
+  &::before {
+    content: "";
+    position: absolute;
+    height: 1.1rem;
+    width: 1.1rem;
+    border-radius: 50%;
+    top: 50%;
+    right: 4px;
+    transform: translateY(-50%);
+    background-color: colors.$light-bg-top;
+  }
+}
+/* main content */
+
+.main {
+  padding: 1rem 1rem;
+}
+
+.stats {
+  width: 100%;
+  transform: translateY(-3.5rem);
+}
+
+.card {
+  position: relative;
+  background-color: colors.$light-card-bg;
+  text-align: center;
+  padding: 1rem 2rem;
+  margin-bottom: 1.5rem;
+  border-radius: 5px;
+  overflow: hidden;
+  transition: all 0.5s ease;
+  /* card borders*/
+  &--facebook {
+    border-top: 5px solid colors.$facebook;
+  }
+  &--twitter {
+    border-top: 5px solid colors.$twitter;
+  }
+  &--instagram::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 5px;
+    width: 100%;
+    background: colors.$instagram;
+  }
+  &--youtube {
+    border-top: 5px solid colors.$youTube;
+  }
+  &__heading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+
+  &__icon {
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0.5rem;
+  }
+
+  &__username {
+    color: colors.$light-card-text;
+    font-weight: 700;
+  }
+  &__number {
+    font-size: 2.5rem;
+    color: colors.$light-card-text-dark;
+  }
+
+  &__type {
+    color: colors.$light-card-text;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-size: 0.8rem;
+  }
+
+  &__today {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+    img {
+      width: 8px;
+      height: 4px;
+      margin-right: 0.3rem;
+    }
+  }
+  &__increase {
+    color: colors.$green;
+  }
+  &__decrease {
+    color: colors.$green;
+  }
+}
+
+.overview {
+  transform: translateY(-3rem);
+  &__heading {
+    color: colors.$light-card-text;
+    margin-bottom: 1rem;
+  }
+  .card__heading {
+    justify-content: space-between;
+  }
+}
+.card--overview--number {
+  font-size: 1.5rem;
+  color: colors.$light-card-text-dark;
+}
+.card-overview__title {
+  color: colors.$light-card-text;
+  font-weight: 700;
+}
+.card__stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  img {
+    margin-right: 0.3rem;
+  }
+}
+
+.today__stats {
+  display: flex;
+  align-items: center;
+}
+
+/* toogle colors*/
+#mode-toggle {
+  display: none;
+}
+#mode-toggle:checked {
+  & + .header {
+    background-color: colors.$very-dark-blue-gb-top;
+  }
+  & ~ .header .header__title {
+    color: colors.$white;
+  }
+  & ~ .header .header__followers,
+  .header .mode .mode__type {
+    color: colors.$dark-card-text;
+  }
+  & ~ .header .mode .mode__type {
+    color: colors.$dark-card-text;
+  }
+  & ~ .header .mode .toggle {
+    background: colors.$toggle-dark;
+    &::before {
+      right: initial;
+      left: 4px;
+      background-color: hsl(230, 17%, 14%);
+    }
+  }
+  /* cards */
+  & ~ .main .stats .cards .card {
+    background-color: colors.$dark-card-bg;
+    &__username {
+      color: colors.$dark-card-text;
+    }
+    &__number {
+      color: colors.$white;
+    }
+
+    &__type {
+      color: colors.$dark-card-text;
+      font-weight: 400;
+    }
+  }
+  & ~ .main .overview .overview-cards .card {
+    background-color: colors.$dark-card-bg;
+    .card--overview--number {
+      color: colors.$white;
+    }
+    .card-overview__title {
+      color: colors.$dark-card-text;
+    }
+  }
+  & ~ .main .attribution {
+    color: colors.$dark-card-text;
+    a {
+      color: colors.$white;
+    }
+  }
+}
+
+.attribution {
+  font-size: 11px;
+  text-align: center;
+}
+.attribution a {
+  color: hsl(228, 45%, 44%);
+}
+
+@media (min-width: 425px) {
+  .main {
+    padding: 1rem 2rem;
+  }
+  .header {
+    padding: 1rem 2rem 3rem;
+  }
+}
+@media (min-width: 768px) {
+  .main {
+    padding: 1rem 4rem;
+  }
+  .header {
+    padding: 1rem 4rem 47px;
+  }
+}
+@media (min-width: 1024px) {
+  body {
+    overflow: hidden;
+  }
+  .header {
+    padding: 2rem 4rem 100px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .main {
+    position: relative;
+  }
+  .mode {
+    border: none;
+    justify-content: flex-end;
+    &__type {
+      margin-right: 1rem;
+    }
+  }
+  .card {
+    width: 24%;
+  }
+  .overview {
+    transform: translateY(-4rem);
+  }
+  .cards,
+  .overview-cards {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  .card-overview {
+    width: 22%;
+    margin-right: 0.5rem;
+  }
+  .attribution {
+    position: absolute;
+    bottom: 30px;
+    width: 100%;
+    text-align: center;
+  }
+}
+@media (min-width: 1440px) {
+  .header {
+    padding: 1rem 4rem 10rem;
+  }
+
+  .stats {
+    width: 100%;
+    transform: translateY(-7rem);
+  }
+  .card {
+    width: 24%;
+  }
+  .card-overview {
+    width: 24%;
+    margin-right: 0.5rem;
+  }
+  .overview {
+    transform: translateY(-7rem);
+  }
+  .attribution {
+    position: absolute;
+    bottom: 60px;
+    width: 100%;
+    text-align: center;
+  }
+}
